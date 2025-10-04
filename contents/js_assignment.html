@@ -12,12 +12,16 @@
       padding: 0;
     }
     #todoList li {
-      margin: 5px 0;
+      margin: 5px 0px;
       font-size: 16px;
     }
     .completed {
       text-decoration: line-through;
       color: gray;
+    }
+
+    li span {
+      margin-left: 5px;
     }
   </style>
 </head>
@@ -47,6 +51,41 @@
 
     <h3>Your solution for assignment</h3>
 
+    <input type="text" id="input" placeholder="Enter new task">
+    <button id="addtask" onclick="AddTask()">Add</button>
+    <button id="cleartask" onclick="ClearTask()">Clear all todos</button>
+    <ul id="todoList">
+    </ul>
+
+    <script>
+      function AddTask() {
+        let ul = document.getElementById("todoList");
+        let li = document.createElement("li");
+        let checkbox = document.createElement("input");
+        let span = document.createElement("span");
+
+        checkbox.type = "checkbox"
+        span.textContent = document.getElementById("input").value;
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        ul.appendChild(li);
+
+        document.getElementById("input").value = "";
+        
+        checkbox.addEventListener("click", function() {
+          span.classList.toggle("completed");
+        });
+      }
+
+      function ClearTask() {
+        let listCheckbox = document.querySelectorAll("#todoList li");
+        for (let i = 0; i < listCheckbox.length; i++) {
+          listCheckbox[i].remove();
+        }
+      }
+
+    </script>
 </body>
 
 </html>

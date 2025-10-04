@@ -49,7 +49,56 @@
     </p>
 
     <h2>Your solution for exercise</h2>
+    <input type="text" id="inputFirst" placeholder="Enter first name">
+    <input type="text" id="inputLast" placeholder="Enter last name">
+    <button id="btn" onclick="Add()">Add</button>
+    <button id="btn1" onclick="ResetInput()">Reset Input</button>
+    <button id="btn2" onclick="ResetTable()">Reset Table</button>
 
+    <p></p>
+
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+        </thead>
+        <tbody id="mybody">
+
+        </tbody>
+    </table>
+
+    <script>
+        function Add() {
+            let firstName = document.getElementById("inputFirst").value;
+            let lastName = document.getElementById("inputLast").value;
+
+            let tb = document.getElementById("mybody");
+            let tr = document.createElement("tr");
+            tb.appendChild(tr);
+
+            let tdF = document.createElement("td");
+            let tdL = document.createElement("td");
+            tdF.innerHTML = firstName;
+            tdL.innerHTML = lastName;
+            tr.appendChild(tdF);
+            tr.appendChild(tdL);
+        };
+
+        function ResetInput() {
+            document.getElementById("inputFirst").value = "";
+            document.getElementById("inputLast").value = "";
+        };
+
+        function ResetTable() {
+            let trCount = document.getElementsByTagName('tr').length;
+            for (let i = 0; i < trCount - 1; i++) {
+                let tr = document.querySelector("tbody tr");
+                tr.remove();
+            }
+        };
+    </script>
 </body>
 
 </html>
